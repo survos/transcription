@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Correct The Transcript{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('correct_react') }}
+{% endblock %}
+
+{% block body %}
+    <h3>Correct Transcript #{{ transcript.id }} {{ transcript.filename }}</h3>
+
+
+
+
+    {% for para in transcript.paragraphs %}
+    <div class="row">
+        <div class="col-md-6">
+                <textarea id="xstarting_transcript" style="width: 100%" rows="2" >{{ transcript.attempt }}</textarea>
+
+        </div>
+        <div class="col-md-6">
+                <div id="correct_transcript" class="correct_transcript" data-paragraph-id="{{ loop.index }}">
+                    {{ para }}
+                </div>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Highlighted Corrections</h2>
+            <div id="display">
+                Display here
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+
+
+    <div id="correct-app">App</div>
+
+
+{% endblock %}

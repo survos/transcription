@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Transcript{% endblock %}
+
+{% block body %}
+    <h1>Create new Transcript</h1>
+
+    {{ include('transcript/_form.html.twig') }}
+
+    <a href="{{ path('transcript_index') }}">back to list</a>
+{% endblock %}

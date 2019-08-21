@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transcript index{% endblock %}
+
+{% block body %}
+    <h1>Transcript index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Text</th>
+                <th>Filename</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transcript in transcripts %}
+            <tr>
+                <td>{{ transcript.id }}</td>
+                <td>{{ transcript.code }}</td>
+                <td>{{ transcript.name }}</td>
+                <td><pre>{{ transcript.firstCharacters(5)|join("\n") }}</pre></td>
+                <td>{{ transcript.filename }}</td>
+                <td>
+                    <a href="{{ path('transcript_show', {'id': transcript.id}) }}">show</a>
+                    <a class="btn btn-primary" href="{{ path('transcript_correct', {'id': transcript.id}) }}">Correct</a>
+                    <a href="{{ path('transcript_edit', {'id': transcript.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('transcript_new') }}">Create new</a>
+{% endblock %}
