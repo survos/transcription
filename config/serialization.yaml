@@ -1,0 +1,10 @@
+App\Entity\Transcript:
+  attributes:
+    id:
+      groups: ['Default']
+    text:
+      groups: ['Default']
+    paragraphs:
+      groups: ['Default']
+
+

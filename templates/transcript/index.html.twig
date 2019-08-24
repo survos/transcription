@@ -28,6 +28,7 @@
                     <a href="{{ path('transcript_show', {'id': transcript.id}) }}">show</a>
                     <a class="btn btn-primary" href="{{ path('transcript_correct', {'id': transcript.id}) }}">Correct</a>
                     <a href="{{ path('transcript_edit', {'id': transcript.id}) }}">edit</a>
+                    <a target="_blank" href="{{ path('transcript_json', {'id': transcript.id}) }}">JSON</a>
                 </td>
             </tr>
         {% else %}

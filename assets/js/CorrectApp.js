@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import $ from 'jquery';
+import { getTranscript } from './transcript_api';
 
-Amplitude = require('amplitudejs');
+let Amplitude = require('amplitudejs');
 
 // import Diff from 'diff';
 let Diff = require('diff');
@@ -21,16 +22,16 @@ export default class CorrectApp extends React.Component {
         $('#student_transcript').val(this.state.student);
         $('#starting_transcript').hide();
 
-
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(event) {
         // this.setState({student, });
-        var one = 'beep boop',
-            other = 'beep boob blah',
+        var
             color = '',
             span = null;
+
+        console.debug(event);
 
         let correct = $('#correct_transcript').html();
         let student  = $('#student_transcript').val();
@@ -65,8 +66,10 @@ export default class CorrectApp extends React.Component {
         const { corrected, student } = this.state;
         return (
             <div>
+                {this.props.paragraph_id}
                 <textarea style={{width: '100%', height: '150px'}} id="student_transcript" onKeyDown={(event) => this.handleClick(event)} defaultValue={student} />
-                <button className={'btn btn-primary'} onClick={(event) => this.handleClick(event)}>Check</button>
+                <button className={'btn btn-primary'} onClick={(event) => this.handleClick(event)}>Check Paragraph</button>
+                <i>{corrected}</i>
             </div>
 
             )
@@ -74,6 +77,7 @@ export default class CorrectApp extends React.Component {
 }
 
 CorrectApp.propTypes = {
+    paragraph_id: PropTypes.number,
     student: PropTypes.string,
     corrected: PropTypes.string
 };

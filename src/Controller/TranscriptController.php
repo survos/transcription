@@ -11,6 +11,7 @@ use App\Form\TranscriptType;
 use App\Repository\TranscriptRepository;
 use SebastianBergmann\Diff\Output\StrictUnifiedDiffOutputBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -18,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use SebastianBergmann\Diff\Differ;
 use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 /**
@@ -34,6 +36,7 @@ class TranscriptController extends AbstractController
             'transcripts' => $transcriptRepository->findAll(),
         ]);
     }
+
 
     /**
      * @Route("/test", name="test")
@@ -101,6 +104,8 @@ class TranscriptController extends AbstractController
     }
 
 
+
+
     private function split($text)  {
         $delim = ".";
         $length = 565;
@@ -132,6 +137,17 @@ class TranscriptController extends AbstractController
         ]);
 
     }
+
+    /**
+     * @Route("/json/{id}", name="transcript_json", methods={"GET"})
+     */
+    public function transcript_json(Transcript $transcript, SerializerInterface $serializer): JsonResponse
+    {
+        $data = $serializer->serialize($transcript, 'json', ['groups' => ['Default']]);
+        // return $this->json($data);
+        return new JsonResponse(json_decode($data));
+    }
+
     /**
      * @Route("/{id}", name="transcript_show", methods={"GET"})
      */

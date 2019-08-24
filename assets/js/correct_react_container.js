@@ -1,13 +1,13 @@
 import ReactDom from "react-dom";
 import React from "react";
 import CorrectApp from './CorrectApp';
+import CorrectTranscript from './CorrectTranscript';
 
-let student = document.getElementById('starting_transcript').value;
-let corrected = document.getElementById('correct_transcript').html;
+let transcriptId = document.getElementById('transcript_id').html;
 
 ReactDom.render(
     <div>
-        <CorrectApp student={student} corrected={corrected} />
+        <CorrectTranscript id={transcriptId} isLoaded={false} />
     </div>,
     document.getElementById('correct-app')
 );

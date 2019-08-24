@@ -10,6 +10,12 @@ framework:
         cookie_secure: auto
         cookie_samesite: lax
         name: DIFF_SESSION
+
+    serializer:
+        enabled: true
+        mapping:
+            paths: ['%kernel.project_dir%/config/']
+
     #
     #esi: true
     #fragments: true
