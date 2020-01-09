@@ -13,14 +13,14 @@ export default class CorrectApp extends React.Component {
 
     constructor(props) {
         super(props);
-        const {student, corrected} = props;
+        const {student, corrected, paragraphNumber} = props;
         this.state = {
             student: student,
             corrected: corrected
         };
 
         $('#student_transcript').val(this.state.student);
-        $('#starting_transcript').hide();
+        // $('#starting_transcript').hide();
 
         this.handleClick = this.handleClick.bind(this);
     }
@@ -31,13 +31,13 @@ export default class CorrectApp extends React.Component {
             color = '',
             span = null;
 
-        console.debug(event);
-
         let correct = $('#correct_transcript').html();
         let student  = $('#student_transcript').val();
+        console.error(student);
+        console.warn(correct);
 
         if (event.key !== "Enter") {
-            return;
+            // return;
         }
 
         var diff = Diff.diffChars(student, correct),
@@ -62,14 +62,19 @@ export default class CorrectApp extends React.Component {
 
     }
 
+    // removed onKeyDown={(event) => this.handleClick(event)}
     render() {
         const { corrected, student } = this.state;
         return (
             <div>
-                {this.props.paragraph_id}
-                <textarea style={{width: '100%', height: '150px'}} id="student_transcript" onKeyDown={(event) => this.handleClick(event)} defaultValue={student} />
+                <form method={'POST'}>
+
+                {this.props.paragraphNumber}
+                <textarea style={{width: '100%', height: '50px'}} id="student_transcript"
+                          defaultValue={student} />
                 <button className={'btn btn-primary'} onClick={(event) => this.handleClick(event)}>Check Paragraph</button>
-                <i>{corrected}</i>
+                <button className={'btn btn-success'}>Save and Continue</button>
+                </form>
             </div>
 
             )
@@ -77,7 +82,7 @@ export default class CorrectApp extends React.Component {
 }
 
 CorrectApp.propTypes = {
-    paragraph_id: PropTypes.number,
+    paragraphNumber: PropTypes.number,
     student: PropTypes.string,
     corrected: PropTypes.string
 };

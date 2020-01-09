@@ -20,4 +20,6 @@ return [
     MsgPhp\UserBundle\MsgPhpUserBundle::class => ['all' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     Knp\Bundle\MarkdownBundle\KnpMarkdownBundle::class => ['all' => true],
+    EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
+    MsgPhp\EavBundle\MsgPhpEavBundle::class => ['all' => true],
 ];

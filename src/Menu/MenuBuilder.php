@@ -23,7 +23,7 @@ $menu->addChild('survos_landing', ['route' => 'survos_landing'])
         $menu->addChild('transcript_test', ['route' => 'test'])
             ->setAttribute('icon', 'fas fa-check');
 
-        // $menu->addChild('admin', ['route' => 'easyadmin']);
+        $menu->addChild('admin', ['route' => 'easyadmin']);
 
 // ... add more children
 

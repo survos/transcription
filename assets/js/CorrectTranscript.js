@@ -16,6 +16,7 @@ export default class CorrectTranscript extends React.Component {
         this.state = {
             highlightedRowId: null,
             transcript: {paragraphs: []},
+            paragraphNumber: 1,
             isLoaded: false,
             getNumberOfCharacters: 1
         };
@@ -50,15 +51,17 @@ export default class CorrectTranscript extends React.Component {
     }
 
     render() {
-        const { id, transcript } = this.state;
+        const { id, transcript, paragraphNumber } = this.state;
         console.log(transcript);
         return (
             <div>
                 {transcript.paragraphs.map( (para, idx) => (
-                    <CorrectApp key={'ca' + idx} paragraph_id={idx} student={''} corrected={para} />
-                )
+                        <a key={'ca' + idx} href={'/transcript/'}>{idx} </a>
+                    )
                 )}
-                    <button className={'btn btn-primary'} onClick={(event) => this.handleClick(event)}>Check</button>
+                <hr />
+
+                <CorrectApp key={'ca' + paragraphNumber} paragraphNumber={paragraphNumber} student={''} corrected={transcript.paragraphs[paragraphNumber-1]} />
             </div>
 
         )
@@ -66,7 +69,8 @@ export default class CorrectTranscript extends React.Component {
 }
 
 CorrectTranscript.propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.number.isRequired,
+    paragraphNumber: PropTypes.number.isRequired,
     isLoaded: PropTypes.bool.isRequired
 };
 

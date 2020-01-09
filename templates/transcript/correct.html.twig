@@ -8,10 +8,32 @@
 {% endblock %}
 
 {% block body %}
-    <div id="transcript_id">{{ transcript.id }}</div>
-    <h3>Correct Transcript #{{ transcript.id }} {{ transcript.filename }}</h3>
+
+    <span id="info" data-transcript-id="{{ transcript.id }}" data-paragraph-number="{{ paragraphNumber }}"></span>
+
+    {% for p in transcript.paragraphs %}
+    <a href="{{ path('transcript_correct', transcript.rp({paragraphNumber: loop.index})) }}">{{ loop.index }}</a>
+    {% endfor %}
+
+    <h3>Correct Transcript #{{ transcript.id }} Paragraph {{ paragraphNumber }} {{ transcript.filename }}</h3>
+
 
     <div id="correct-app">App</div>
+
+    <div id="display">Results here</div>
+
+    <h3>Transcript</h3>
+    {% for p in transcript.paragraphs %}
+    {% if loop.index < paragraphNumber %}
+        <p><i class="fas fa-paragraph"></i>{{ loop.index }}
+            {{ transcript.paragraphs[loop.index-1] }}</p>
+    {% endif %}
+    {% endfor %}
+
+    <div class="spoiler">
+        <div class="spoiler-toggle"><i class="fas fa-paragraph"></i> {{ paragraphNumber }} </div>
+        <div id='correct_transcript' class="spoiler-text">{{ transcript.paragraphs[paragraphNumber-1] }}</div>
+    </div>
 
 
 {% endblock %}

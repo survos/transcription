@@ -128,12 +128,13 @@ class TranscriptController extends AbstractController
     }
 
     /**
-     * @Route("/correct/{id}", name="transcript_correct", methods={"GET"})
+     * @Route("/correct/{id}-{paragraphNumber}", name="transcript_correct", methods={"GET"})
      */
-    public function correct(Transcript $transcript): Response
+    public function correct(Transcript $transcript, $paragraphNumber=1): Response
     {
         return $this->render('transcript/correct.html.twig', [
             'transcript' => $transcript,
+            'paragraphNumber' => $paragraphNumber
         ]);
 
     }

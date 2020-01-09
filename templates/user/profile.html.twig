@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    {% set user = msgphp_user.current %}
     <h1>Your Profile</h1>
 
     <p>Logged in as: <em>{{ msgphp_user.current.email }}</em></p>
@@ -16,17 +18,27 @@
         </div>
     {{ form_end(username_form) }}
 
+
+    <h2>My Transcripts</h2>
+
+    {% for userTranscript in user.userTranscripts %}
+        <li>
+            {{ userTranscript.transcript.name }}
+        </li>
+    {% endfor %}
+
     <h2>Change password</h2>
     {{ form_start(password_form) }}
-        {{ form_errors(password_form) }}
-        <h3>Current password</h3>
-        {{ form_row(password_form.current) }}
+    {{ form_errors(password_form) }}
+    <h3>Current password</h3>
+    {{ form_row(password_form.current) }}
 
-        <h3>New password</h3>
-        {{ form_row(password_form.password) }}
+    <h3>New password</h3>
+    {{ form_row(password_form.password) }}
 
-        <div>
-            <input type="submit" value="Change" />
-        </div>
+    <div>
+        <input type="submit" value="Change" />
+    </div>
     {{ form_end(password_form) }}
+
 {% endblock %}
