@@ -25,17 +25,18 @@ class LoadTranscriptsCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+            ->setDescription('Load transcripts from directory')
+            ->addArgument('dir', InputArgument::OPTIONAL, 'Location of mp3 files and transcriptions', '../data/nachotime')
+            ->addOption('force', null, InputOption::VALUE_NONE, 'force reload')
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+        $pattern = $input->getArgument('dir');
 
-        foreach (glob('../data/nachotime/*.mp3') as $filename) {
+        foreach (glob($pattern . '/*.mp3') as $filename) {
             $solution = str_replace('.mp3', '.solution', $filename);
             if (file_exists($solution)) {
                 $name = basename($filename, '.mp3');
@@ -57,7 +58,8 @@ class LoadTranscriptsCommand extends Command
 
         $this->em->flush();
 
-        $io->success('Transcripts Loaded');
+        $io->success($this->em->getRepository(Transcript::class)->count([]) . ' Transcripts Loaded');
+        return 0;
     }
 
 }
