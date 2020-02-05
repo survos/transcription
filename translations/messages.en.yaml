@@ -1,0 +1,20 @@
+icon:
+    pdf: far fa-file-pdf
+    jpg: far fa-image
+    dir: far fa-folder
+    folder: far fa-folder
+    mp3: far fa-file-audio
+    wav: fas fa-file-audio
+    docx: fas fa-file-word
+home:
+    title: 'Nacho Transcripts'
+    intro: 'Transcription Exercises'
+    description: 'Listen, transcribe, and check your work against the correct answer.'
+survos_landing: Home
+app_docs: Documentation
+
+transcripts: Transcripts Exercises
+transcript_index:
+    title: Transcripts
+    label: Transcripts
+    description: Transcripts from nachotime, loaded via app:load-transcripts.  First attempt at using React.js

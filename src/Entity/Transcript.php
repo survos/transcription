@@ -123,7 +123,7 @@ class Transcript
     }
 
     public function getParagraphs(): array {
-        return array_filter(explode("\n", $this->getText()), function($s) { return $s; });
+        return array_values(array_filter(explode("\n", $this->getText()), function($s) { return $s; }));
     }
 
     public function getRp($addl = []) {

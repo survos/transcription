@@ -24,14 +24,15 @@
 
     <h3>Transcript</h3>
     {% for p in transcript.paragraphs %}
-    {% if loop.index < paragraphNumber %}
-        <p><i class="fas fa-paragraph"></i>{{ loop.index }}
-            {{ transcript.paragraphs[loop.index-1] }}</p>
-    {% endif %}
+        {% if loop.index < paragraphNumber %}
+            <p><i class="fas fa-paragraph"></i>{{ loop.index }}
+                {{ transcript.paragraphs[loop.index-1] }}</p>
+        {% endif %}
     {% endfor %}
 
     <div class="spoiler">
         <div class="spoiler-toggle"><i class="fas fa-paragraph"></i> {{ paragraphNumber }} </div>
+
         <div id='correct_transcript' class="spoiler-text">{{ transcript.paragraphs[paragraphNumber-1] }}</div>
     </div>
 

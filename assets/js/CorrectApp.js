@@ -65,9 +65,11 @@ export default class CorrectApp extends React.Component {
     // removed onKeyDown={(event) => this.handleClick(event)}
     render() {
         const { corrected, student } = this.state;
+
+        // @todo: this needs to be an ajax call to get the diff, then display it.
         return (
             <div>
-                <form method={'POST'}>
+                <form method={'GET'}>
 
                 {this.props.paragraphNumber}
                 <textarea style={{width: '100%', height: '50px'}} id="student_transcript"

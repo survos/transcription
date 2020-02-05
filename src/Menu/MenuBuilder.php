@@ -10,25 +10,25 @@ class MenuBuilder extends LandingMenuBuilder
     public function createMainMenu(array $options)
     {
         $menu = $this->factory->createItem('root');
-$menu->setChildrenAttribute('class', 'nav navbar-nav mr-auto');
 
-$menu->addChild('survos_landing', ['route' => 'survos_landing'])
-->setAttribute('icon', 'fas fa-home');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav mr-auto');
 
-    $menu->addChild('survos_landing_credits', ['route' => 'survos_landing_credits'])
-->setAttribute('icon', 'fas fa-trophy');
-
-        $menu->addChild('transcript_index', ['route' => 'transcript_index'])
-            ->setAttribute('icon', 'fas fa-document-o');
-        $menu->addChild('transcript_test', ['route' => 'test'])
-            ->setAttribute('icon', 'fas fa-check');
-
+        $menu->addChild('transcript_index', ['route' => 'transcript_index', 'label' => 'transcripts'])->setAttribute('icon', 'fas fa-list');
+        $menu->addChild('survos_landing', ['route' => 'app_homepage'])->setAttribute('icon', 'fas fa-home');
         $menu->addChild('admin', ['route' => 'easyadmin']);
 
-// ... add more children
+        $menu->addChild('survos_landing_credits', ['route' => 'survos_landing_credits'])->setAttribute('icon', 'fas fa-trophy');
+        $menu->addChild('app_typography', ['route' => 'app_typography'])->setAttribute('icon', 'fab fa-bootstrap');
+        $menu->addChild('test', ['route' => 'test'])->setAttribute('icon', 'fas fa-grimace');
 
-return $this->cleanupMenu($menu);
-}
+        try {
+        } catch (\Exception $e) {
+            // probably not loaded.
+        }
+
+
+        return $this->cleanupMenu($menu);
+    }
 
 
 
